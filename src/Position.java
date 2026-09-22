@@ -8,9 +8,13 @@ public class Position {
         this.currentRoom = firstRoom;
     }
     //Go to next room
-    public boolean goToNextRoom() {
-        currentRoom = currentRoom.getRoom();
-        return currentRoom != null;
+    public boolean goToNextRoom(String direction) {
+        Room nextRoom = currentRoom.(direction);
+        if (nextRoom != null){
+            currentRoom = nextRoom;
+            return true;
+        }
+        return false;
     }
     //What room are we in?
     public int whereIsPlayer() {
