@@ -1,12 +1,24 @@
 public class Adventure {
 
+    Room roomWest = new Room("Room West","Des");
+    Room roomNorthWest = new Room("Room North West","Des");
+    Room roomNorth = new Room("Room North","Des");
+    Room roomNorthEast = new Room("Room North East","Des");
+    Room roomEast = new Room("Room East","Des");
+    Room roomSouthEast = new Room("Room South East","Des");
+    Room roomSouth = new Room("Room South","Des");
+    Room roomSouthWest = new Room("Room South West","Des");
+    Room roomCentral = new Room("Room Central","Des");
+
+    Position player = new Position(roomNorthWest);
+
+
     //Initiates Games from Main
     public void startAdventure () {
     boolean running = true;
         while (running){
 
-            //Display current position
-            //PLACEHOLDER
+            IO.println(player.whereIsPlayer());
 
             String command = IO.readln("Input Command: ");
 
