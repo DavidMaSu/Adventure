@@ -59,7 +59,14 @@ public class Room {
         return adjacentRooms;
     }
 
-    public void setAdjacentRooms(Room adjacentRooms, Room adjacentRooms2, Room adjacentRooms3, Room adjacentRooms4) {
-        this.adjacentRooms = adjacentRooms;
+    public void setAdjacentRooms(Room north, Room east, Room south, Room west) {
+        this.north = north;
+        this.east = east;
+        this.south = south;
+        this.west = west;
+    }
+
+    public String toString() {
+        return "You are in " + name + ". " + description;
     }
 }
