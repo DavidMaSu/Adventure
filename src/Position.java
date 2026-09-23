@@ -9,20 +9,36 @@ public class Position {
     }
     //Go to next room
     public boolean movement(String direction) {
-        switch (movement(direction)){
+        switch (direction){
             case "n" -> {
-                Room nextRoom = currentRoom.getName;
+                Room nextRoom = currentRoom.getNorth();
                 if (nextRoom != null){
-                    this.currentRoom = currentRoom.north;
+                    IO.println("You go north");
                 }
             }
-            case "s" -> IO.println("You go South");
-            case "e" -> IO.println("You go East");
-            case "w" -> IO.println("You go West");
+            case "s" -> {
+                Room nextRoom = currentRoom.getSouth();
+                if (nextRoom != null) {
+                    IO.println("You go South");
+                }
+            }
+            case "e" -> {
+                Room nextRoom = currentRoom.getEast();
+                if (nextRoom != null) {
+                    IO.println("You go East");
+                }
+            }
+            case "w" -> {
+                Room nextRoom = currentRoom.getWest();
+                if (nextRoom != null) {
+                    IO.println("You go West");
+                }
+            }
             default -> IO.println("Invalid Command");
         }
         return false;
     }
+
     //What room are we in?
     public Room whereIsPlayer() {
         return currentRoom.getName();
