@@ -29,6 +29,8 @@ public class Adventure {
         roomCentral.setAdjacentRooms(null, null, roomSouth, null);
         // END of assigning room Adjacencies
 
+        IO.println("Test, East of " + roomNorth + " is " + roomNorth.getEast());
+
         boolean running = true;
         while (running) {
 
@@ -42,7 +44,7 @@ public class Adventure {
                 case "w" -> currentRoom = currentRoom.getWest();
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look" -> IO.println("You look and see that you are in " + player.whereIsPlayer());
+                case "look" -> IO.println("You look and see that you are in " + currentRoom);
                 default -> IO.println("Invalid Command");
             }
 
