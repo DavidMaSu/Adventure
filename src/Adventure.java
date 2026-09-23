@@ -13,7 +13,7 @@ public class Adventure {
     Room roomCentral = new Room("Room Central", "Des");
 
     Position player = new Position(roomNorthWest);
-
+    Room currentRoom = roomNorthWest;
 
     //Initiates Games from Main
     public void startAdventure() {
@@ -36,10 +36,10 @@ public class Adventure {
 
             //Takes input from room and position to change location or quit
             switch (command) {
-                case "n" -> IO.println("You go North");
-                case "s" -> IO.println("You go South");
-                case "e" -> IO.println("You go East");
-                case "w" -> IO.println("You go West");
+                case "n" -> currentRoom = currentRoom.getNorth();
+                case "s" -> currentRoom = currentRoom.getSouth();
+                case "e" -> currentRoom = currentRoom.getEast();
+                case "w" -> currentRoom = currentRoom.getWest();
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
                 case "look" -> IO.println("You look and see that you are in " + player.whereIsPlayer());
@@ -55,7 +55,7 @@ public class Adventure {
         IO.println("Type s to go South");
         IO.println("Type e to go East");
         IO.println("Type w to go West");
-        IO.println("Type w to go West");
+        IO.println("Type look to see room");
         IO.println("Type Exit to quit");
     }
 }
