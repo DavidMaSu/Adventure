@@ -12,8 +12,7 @@ public class Adventure {
     Room roomSouthWest = new Room("Room South West", "Des");
     Room roomCentral = new Room("Room Central", "Des");
 
-    Position player = new Position(roomNorthWest);
-
+    Room currentRoom = roomNorthWest;
 
     //Initiates Games from Main
     public void startAdventure() {
@@ -22,27 +21,58 @@ public class Adventure {
         roomNorthWest.setAdjacentRooms(null, roomNorth, roomWest, null);
         roomNorth.setAdjacentRooms(null, roomNorthEast, null, roomNorthWest);
         roomNorthEast.setAdjacentRooms(null, null, roomEast, roomNorth);
-        roomEast.setAdjacentRooms(roomNorthEast, null, roomNorthEast, null);
+        roomEast.setAdjacentRooms(roomNorthEast, null, roomSouthEast, null);
         roomSouthEast.setAdjacentRooms(roomEast, null, null, roomSouth);
         roomSouth.setAdjacentRooms(roomCentral, roomSouthEast, null, roomSouthWest);
         roomSouthWest.setAdjacentRooms(roomWest, roomSouth, null, null);
         roomCentral.setAdjacentRooms(null, null, roomSouth, null);
         // END of assigning room Adjacencies
 
+        IO.println("Test, East of " + roomNorth + " is " + roomNorth.getEast());
+
         boolean running = true;
         while (running) {
 
-            String command = IO.readln("Input Command: ");
+            String command = IO.readln("Input Command: ").trim().toLowerCase();
 
             //Takes input from room and position to change location or quit
             switch (command) {
-                case "n" -> IO.println("You go North");
-                case "s" -> IO.println("You go South");
-                case "e" -> IO.println("You go East");
-                case "w" -> IO.println("You go West");
-                case "Help", "help" -> displayHelpMenu();
+                case "n" -> {
+                    if (currentRoom.getNorth() != null) {
+                        currentRoom = currentRoom.getNorth();
+                        IO.println("You move North");
+                    } else {
+                        invalidMove();
+                    }
+                }
+
+                case "s" -> {
+                    if (currentRoom.getSouth() != null) {
+                        currentRoom = currentRoom.getSouth();
+                        IO.println("You move South");
+                    } else {
+                        invalidMove();
+                    }
+                }
+                case "e" -> {
+                    if (currentRoom.getEast() != null) {
+                        currentRoom = currentRoom.getEast();
+                        IO.println("You move East");
+                    } else {
+                        invalidMove();
+                    }
+                }
+                case "w" -> {
+                    if (currentRoom.getWest() != null) {
+                        currentRoom = currentRoom.getWest();
+                        IO.println("You move West");
+                    } else {
+                        invalidMove();
+                    }
+                }
+                case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look", "Look" -> IO.println("You look and see that you are in " + player.whereIsPlayer());
+                case "look" -> IO.println("You look and see that you are in " + currentRoom);
                 default -> IO.println("Invalid Command");
             }
 
@@ -55,7 +85,11 @@ public class Adventure {
         IO.println("Type s to go South");
         IO.println("Type e to go East");
         IO.println("Type w to go West");
-        IO.println("Type w to go West");
+        IO.println("Type look to see room");
         IO.println("Type Exit to quit");
+    }
+
+    private void invalidMove() {
+        IO.println("You cannot move in this direction");
     }
 }
