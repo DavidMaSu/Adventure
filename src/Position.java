@@ -39,9 +39,5 @@ public class Position {
         return false;
     }
 
-    //What room are we in?
-    public String whereIsPlayer() {
-        return currentRoom.getName();
-    }
 }
 
