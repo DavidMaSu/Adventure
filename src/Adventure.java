@@ -32,7 +32,7 @@ public class Adventure {
         boolean running = true;
         while (running) {
 
-            String command = IO.readln("Input Command: ");
+            String command = IO.readln("Input Command: ").trim().toLowerCase();
 
             //Takes input from room and position to change location or quit
             switch (command) {
@@ -40,9 +40,9 @@ public class Adventure {
                 case "s" -> IO.println("You go South");
                 case "e" -> IO.println("You go East");
                 case "w" -> IO.println("You go West");
-                case "Help", "help" -> displayHelpMenu();
+                case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look", "Look" -> IO.println("You look and see that you are in " + player.whereIsPlayer());
+                case "look" -> IO.println("You look and see that you are in " + player.whereIsPlayer());
                 default -> IO.println("Invalid Command");
             }
 
