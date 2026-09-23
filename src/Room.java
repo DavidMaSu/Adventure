@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+
 public class Room {
     private final String name;
     private final String description;
-    private Room adjacentRooms;
+    private ArrayList<Room> adjacentRooms;
     private Room north;
     private Room east;
     private Room south;
@@ -55,11 +57,18 @@ public class Room {
         this.west = west;
     }
     //End of setters
-    public Room getAdjacentRooms() {
+    public ArrayList<Room> getAdjacentRooms() {
         return adjacentRooms;
     }
 
-    public void setAdjacentRooms(Room adjacentRooms, Room adjacentRooms2, Room adjacentRooms3, Room adjacentRooms4) {
-        this.adjacentRooms = adjacentRooms;
+    public void setAdjacentRooms(Room North, Room East, Room South, Room West) {
+        adjacentRooms.add(North);
+        setNorth(North);
+        adjacentRooms.add(East);
+        setEast(East);
+        adjacentRooms.add(South);
+        setSouth(South);
+        adjacentRooms.add(West);
+        setWest(West);
     }
 }
