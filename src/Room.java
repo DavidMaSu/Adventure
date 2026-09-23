@@ -58,7 +58,6 @@ public class Room {
     public Room getAdjacentRooms() {
         return adjacentRooms;
     }
-
     public void setAdjacentRooms(Room north, Room east, Room south, Room west) {
         this.north = north;
         this.east = east;
