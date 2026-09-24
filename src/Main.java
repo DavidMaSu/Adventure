@@ -1,5 +1,7 @@
 void main() {
     IO.println("Hello group");
     Adventure adventure = new Adventure();
-    adventure.startAdventure();
+    UserInterface UI = new UserInterface(adventure);
+
+    UI.move();
 }

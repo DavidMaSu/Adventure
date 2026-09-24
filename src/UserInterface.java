@@ -1,11 +1,10 @@
 public class UserInterface {
-    Player player;
-
-    public UserInterface(Player player) {
-        this.player = player;
+    Adventure adventure;
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
     }
 
-    public void move(Player player) {
+    public void move() {
 
         boolean running = true;
         while (running) {
@@ -15,28 +14,28 @@ public class UserInterface {
             //Takes input from room and position to change location or quit
             switch (command) {
                 case "n" -> {
-                    if (player.moveNorth()) {
+                    if (adventure.moveN()) {
                         IO.println("You move North");
                     } else {
                         invalidMove();
                     }
                 }
                 case "s" -> {
-                    if (player.moveSouth()) {
+                    if (adventure.moveS()) {
                         IO.println("You move South");
                     } else {
                         invalidMove();
                     }
                 }
                 case "e" -> {
-                    if (player.moveEast()) {
+                    if (adventure.moveE()) {
                         IO.println("You move East");
                     } else {
                         invalidMove();
                     }
                 }
                 case "w" -> {
-                    if (player.moveWest()) {
+                    if (adventure.moveW()) {
                         IO.println("You move West");
                     } else {
                         invalidMove();
@@ -44,7 +43,7 @@ public class UserInterface {
                 }
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look" -> IO.println("You look and see that you are in " + player.getCurrentRoom());
+                case "look" -> IO.println("You look and see that you are in " + adventure.currentPos());
                 default -> IO.println("Invalid Command");
             }
 

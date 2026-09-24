@@ -2,14 +2,48 @@ import java.util.ArrayList;
 
 public class Adventure {
     //Loads classes
-    Map adventureMap = new Map();
-    Player dovakin = new Player(adventureMap);
-    UserInterface UI = new UserInterface(dovakin);
+    Player dovakin;
 
-    //Initiates Games from Main
-    public void startAdventure() {
-        //Assigning Room Adjacencies format - (North, East, South, West)
+    public Adventure() {
+        Map adventureMap = new Map();
         adventureMap.createMap();
-        UI.move(dovakin);
+        dovakin = new Player(adventureMap.getFirstRoom());
+
     }
+
+    public boolean moveN() {
+        if (dovakin.moveNorth()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean moveS() {
+        if (dovakin.moveSouth()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean moveE() {
+        if (dovakin.moveEast()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean moveW() {
+        if (dovakin.moveWest()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Room currentPos(){
+        return dovakin.getCurrentRoom();
+    }
+
 }
