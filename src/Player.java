@@ -2,8 +2,8 @@ public class Player {
 
     private Room currentRoom;
 
-    public Player(Map map) {
-        this.currentRoom = map.roomNorthWest;
+    public Player(Room firstroom) {
+        this.currentRoom = firstroom;
     }
 
     public boolean moveNorth() {
