@@ -1,10 +1,8 @@
 public class Player {
 
-    private final Map map;
     private Room currentRoom;
 
     public Player(Map map) {
-        this.map = map;
         this.currentRoom = map.roomNorthWest;
     }
 
