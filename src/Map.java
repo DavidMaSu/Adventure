@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Map {
 
     private Room firstRoom;
@@ -24,6 +25,14 @@ public class Map {
         roomCentral.setAdjacentRooms(null, null, roomSouth, null);
 
         firstRoom = roomNorthWest;
+
+        Item sword = new Item("Sword","Magic!", 1);
+        Item pot = new Item("Pot", "Infinite soup", 2);
+        Item flashLight = new Item("Flashlight", "Never runs out of battery", 3);
+
+        roomCentral.addItem(sword);
+        roomNorthWest.addItem(pot);
+        roomNorth.addItem(flashLight);
     }
 
     public Room getFirstRoom (){
