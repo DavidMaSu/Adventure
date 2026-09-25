@@ -45,5 +45,20 @@ public class Adventure {
     public Room currentPos(){
         return dovakin.getCurrentRoom();
     }
-
+    //Drops item from player
+    public Item dropItem(String name){
+        Item dropItem = dovakin.removeItem(name);
+        if (dropItem != null){
+            currentPos().addItem(dropItem);
+        }
+        return dropItem;
+    }
+    //Adds item to player
+    public Item addItem(String name){
+        Item foundItem = currentPos().removeItem(name);
+        if (foundItem != null) {
+            dovakin.addItem(foundItem);
+        }
+        return foundItem;
+    }
 }
