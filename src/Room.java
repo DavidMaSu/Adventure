@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Room {
     private final String name;
     private final String description;
-    private ArrayList<Room> adjacentRooms = new ArrayList<>();
+    private ArrayList<Item> inventory = new ArrayList<>();
     private Room north;
     private Room east;
     private Room south;
@@ -14,9 +14,13 @@ public class Room {
         this.description = description;
 
     }
-    //Start of Getters
+    //Start of room data Getters
     public String getName() {
         return name;
+    }
+
+    public String toString(){
+        return getName();
     }
 
     public String getDescription() {
@@ -40,7 +44,7 @@ public class Room {
     }
     //End of getters
 
-    //Start of setters
+    //Start of room direction setters
 
     public void setNorth(Room north) {
         this.north = north;
@@ -58,21 +62,25 @@ public class Room {
         this.west = west;
     }
     //End of setters
-    public ArrayList<Room> getAdjacentRooms() {
-        return adjacentRooms;
-    }
-    public String toString(){
-        return getName();
+
+    //Room inventory
+    public ArrayList<Item> getInventory() {
+        return inventory;
     }
 
+    public void addItem(Item itemNew){
+        inventory.add(itemNew);
+    }
+
+    public void removeItem(int index) {
+        inventory.remove(index);
+    }
+
+    // Initiate
     public void setAdjacentRooms(Room North, Room East, Room South, Room West) {
-        adjacentRooms.add(North);
         setNorth(North);
-        adjacentRooms.add(East);
         setEast(East);
-        adjacentRooms.add(South);
         setSouth(South);
-        adjacentRooms.add(West);
         setWest(West);
     }
 }

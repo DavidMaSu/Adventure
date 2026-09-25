@@ -1,8 +1,8 @@
-public record Item(String type, String ability) {
+public record Item(String type, String description, int ID) {
 
     @Override
     public String toString() {
-        return "A " + type + " It can do " + ability;
+        return "Item " + type + " " + description;
     }
 }
 
