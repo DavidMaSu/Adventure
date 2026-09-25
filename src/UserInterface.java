@@ -43,8 +43,14 @@ public class UserInterface {
                 }
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look" -> IO.println("You look and see that you are in " + adventure.currentPos() + "\n"
-                + "Here you see: " + adventure.Sword);
+                case "look" -> {
+                    String descrition = ("You look and see that you are in " + adventure.currentPos());
+                    if (running){
+                        IO.println(descrition + "\n" + "A Item! Has Abillity!");
+                        } else {
+                        IO.println(descrition + "\n" + "There was no item found");
+                        }
+                }
                 default -> IO.println("Invalid Command");
             }
 
