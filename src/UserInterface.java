@@ -43,7 +43,8 @@ public class UserInterface {
                 }
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
-                case "look" -> IO.println("You look and see that you are in " + adventure.currentPos());
+                case "look" -> IO.println("You look and see that you are in " + adventure.currentPos() + "\n"
+                + "Here you see: " + adventure.Sword);
                 default -> IO.println("Invalid Command");
             }
 
