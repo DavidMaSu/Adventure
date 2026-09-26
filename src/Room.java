@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Room {
     private final String name;
@@ -71,10 +72,18 @@ public class Room {
     public void addItem(Item itemNew){
         inventory.add(itemNew);
     }
-
-    public void removeItem(int index) {
-        inventory.remove(index);
+    //Keeps track of room items in order to add them to player
+    public Item removeItem(String name) {
+        for (int i = 0; i < getInventory().size(); i++) {
+            Item item = getInventory().get(i);
+            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+                getInventory().remove(i);
+                return item;
+            }
+        }
+        return null;
     }
+
 
     // Initiate
     public void setAdjacentRooms(Room North, Room East, Room South, Room West) {

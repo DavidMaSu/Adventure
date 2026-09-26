@@ -14,11 +14,18 @@ public class Player {
     }
 
     public void addItem(Item itemNew){
-            inventory.add(itemNew);
+        inventory.add(itemNew);
     }
-
-    public void removeItem(int index){
-        inventory.remove(index);
+    //Keep track of player inventory in order to drop item
+    public Item removeItem(String name){
+        for (int i = 0; i < getInventory().size(); i++) {
+            Item item = getInventory().get(i);
+            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+                getInventory().remove(i);
+                return item;
+            }
+        }
+        return null;
     }
 
     public boolean moveNorth() {

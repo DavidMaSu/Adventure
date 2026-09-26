@@ -43,21 +43,28 @@ public class UserInterface {
                         invalidMove();
                     }
                 }
-                case "i" -> {
-                    if (adventure.search(sword)) {
-                        IO.print("Item Found! ");
-                    } else {
-                        IO.print("Item not found ");
-                    }
+                case "take" -> {
+                    String name = IO.readln("What do you wanna take? ");
+                    //Takes string name item
+                    Item playerItem = adventure.addItem(name);
+                    IO.println("Added: " + playerItem + " to inventory!");
+                    //Debug test to see if items goes to inventory
+                    IO.println(adventure.dovakin.getInventory());
+                }
+                case "drop" -> {
+                    String name = IO.readln("What do you wanna drop? ");
+                    //Drops string name item
+                    Item item = adventure.dropItem(name);
+                    IO.println("You have dropped!: " + item);
                 }
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
                 case "look" -> {
                     String descrition = ("You look and see that you are in " + adventure.currentPos());
                     if (running){
-                        IO.println(descrition + "\n" + "A Item! Has Abillity!");
+                        IO.println(descrition + "\n" + "Here you see: Items!");
                         } else {
-                        IO.println(descrition + "\n" + "There was no item found");
+                        IO.println(descrition + "\n" + "There was no item found here");
                         }
                 }
                 default -> IO.println("Invalid Command");

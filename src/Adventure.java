@@ -47,32 +47,20 @@ public class Adventure {
     public Room currentPos(){
         return dovakin.getCurrentRoom();
     }
-
-    public boolean search(Item item){
-        IO.println("Item in inventory " + dovakin.getInventory());
-        IO.println("Looking for this item " + item);
-        return dovakin.search(item);
+    //Drops item from player
+    public Item dropItem(String name){
+        Item dropItem = dovakin.removeItem(name);
+        if (dropItem != null){
+            currentPos().addItem(dropItem);
+        }
+        return dropItem;
     }
-
-
-
-//    public Item searchItem(Item taskenHunLederEfter) {
-//        Item itemFound = null;
-//        for (dovakin.getInventory() item : dovakin.getInventory()) {
-//            if (dovakin.getInventory() != null && sæde.getTaske().equals(taskenHunLederEfter)) {
-//                itemFound = sæde.getItem();
-//            }
-//        }
-//        return fundetTaske;
-//    }
-//
-//    public int hvilketNrSædeErTaskenFundetPå(Taske taskenHunLederEfter){
-//        int sædeHvorTaskenLigger = -1;
-//        for (int i = 0; i < sæder.size(); i++) {
-//            if (sæder.get(i).getTaske() != null && sæder.get(i).getTaske().equals(taskenHunLederEfter)) {
-//                sædeHvorTaskenLigger = i + 1;
-//            }
-//        }
-//        return sædeHvorTaskenLigger;
-//    }
+    //Adds item to player
+    public Item addItem(String name){
+        Item foundItem = currentPos().removeItem(name);
+        if (foundItem != null) {
+            dovakin.addItem(foundItem);
+        }
+        return foundItem;
+    }
 }
