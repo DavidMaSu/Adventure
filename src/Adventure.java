@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Adventure {
     //Loads classes
     Player dovakin;
-    Item test;
 
     public Adventure(Item test) {
         Map adventureMap = new Map();
