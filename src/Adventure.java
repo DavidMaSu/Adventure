@@ -4,10 +4,12 @@ public class Adventure {
     //Loads classes
     Player dovakin;
 
-    public Adventure() {
+    public Adventure(Item test) {
         Map adventureMap = new Map();
         adventureMap.createMap();
         dovakin = new Player(adventureMap.getFirstRoom());
+        this.test = test;
+        dovakin.addItem(test);
 
     }
 

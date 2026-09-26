@@ -1,5 +1,7 @@
 public class UserInterface {
     Adventure adventure;
+    Item sword = new Item("sword", "cool", 1);
+
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
     }
