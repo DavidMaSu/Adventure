@@ -29,7 +29,6 @@ public class Player {
             return false;
         }
 
-
     }
 
     public boolean moveSouth() {
@@ -63,4 +62,26 @@ public class Player {
     public Room getCurrentRoom(){
         return currentRoom;
     }
+
+    public boolean search(Item item){
+        for(Item items : inventory){
+            if(items == item)
+                return true;
+        }
+        IO.println("Hello ");
+        return false;
+    }
+
+
 }
+
+//    public Item searchItem(Item selectedItem) {
+//        Item itemFound = null;
+//        for (Item item : inventory) {
+//            if (inventory != null && item.equals(selectedItem)) {
+//                itemFound = item.getItem();
+//            }
+//        }
+//        return itemFound;
+//    }
+//}

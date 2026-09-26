@@ -1,5 +1,7 @@
 public class UserInterface {
     Adventure adventure;
+    Item sword = new Item("sword", "cool", 1);
+
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
     }
@@ -39,6 +41,13 @@ public class UserInterface {
                         IO.println("You move West");
                     } else {
                         invalidMove();
+                    }
+                }
+                case "i" -> {
+                    if (adventure.search(sword)) {
+                        IO.print("Item Found! ");
+                    } else {
+                        IO.print("Item not found ");
                     }
                 }
                 case "help" -> displayHelpMenu();
