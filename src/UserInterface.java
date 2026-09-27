@@ -57,14 +57,23 @@ public class UserInterface {
                     Item item = adventure.dropItem(name);
                     IO.println("You have dropped!: " + item);
                 }
+                case "i" -> {
+                    if (adventure.playerHasItems()){
+                        IO.println("You are carrying:");
+                        IO.println(adventure.playerDisplayItems());
+                    }
+                    else {
+                        IO.println("You are not carrying anything.");
+                    }
+                }
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
                 case "look" -> {
-                    String descrition = ("You look and see that you are in " + adventure.currentPos());
-                    if (running){
-                        IO.println(descrition + "\n" + "Here you see: Items!");
+                    String description = ("You look and see that you are in " + adventure.currentPos());
+                    if (adventure.hasItems()){
+                        IO.println(description + "\n" + "Here you see: " + adventure.displayItems());
                         } else {
-                        IO.println(descrition + "\n" + "There was no item found here");
+                        IO.println(description + "\n" + "There is nothing here");
                         }
                 }
                 default -> IO.println("Invalid Command");
@@ -79,6 +88,9 @@ public class UserInterface {
         IO.println("Type s to go South");
         IO.println("Type e to go East");
         IO.println("Type w to go West");
+        IO.println("Type i to check your inventory");
+        IO.println("Type take to take item");
+        IO.println("Type drop  to drop item");
         IO.println("Type look to see room");
         IO.println("Type Exit to quit");
     }

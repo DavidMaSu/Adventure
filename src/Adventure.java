@@ -4,12 +4,13 @@ public class Adventure {
     //Loads classes
     Player dovakin;
 
-    public Adventure(Item test) {
+    public Adventure() {
+        IO.println("Initializing Adventure");
         Map adventureMap = new Map();
         adventureMap.createMap();
+        IO.println("Initializing Player");
         dovakin = new Player(adventureMap.getFirstRoom());
-        this.test = test;
-        dovakin.addItem(test);
+        IO.println("Player Inventory Size + Contents = " + dovakin.getInventory().size() + dovakin.getInventory() );
 
     }
 
@@ -47,6 +48,24 @@ public class Adventure {
     public Room currentPos(){
         return dovakin.getCurrentRoom();
     }
+
+    // Checks players current room if it has items in the inventory
+    public boolean hasItems(){
+        return !currentPos().getInventory().isEmpty();
+    }
+
+    public ArrayList<Item> displayItems(){
+        return currentPos().getInventory();
+    }
+
+    public boolean playerHasItems(){
+        return !dovakin.getInventory().isEmpty();
+    }
+
+    public ArrayList<Item> playerDisplayItems(){
+        return dovakin.getInventory();
+    }
+
     //Drops item from player
     public Item dropItem(String name){
         Item dropItem = dovakin.removeItem(name);
