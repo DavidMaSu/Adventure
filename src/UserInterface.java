@@ -16,28 +16,28 @@ public class UserInterface {
             //Takes input from room and position to change location or quit
             switch (command) {
                 case "n" -> {
-                    if (adventure.moveN()) {
+                    if (adventure.playerMoveN()) {
                         IO.println("You move North");
                     } else {
                         invalidMove();
                     }
                 }
                 case "s" -> {
-                    if (adventure.moveS()) {
+                    if (adventure.playerMoveS()) {
                         IO.println("You move South");
                     } else {
                         invalidMove();
                     }
                 }
                 case "e" -> {
-                    if (adventure.moveE()) {
+                    if (adventure.playerMoveE()) {
                         IO.println("You move East");
                     } else {
                         invalidMove();
                     }
                 }
                 case "w" -> {
-                    if (adventure.moveW()) {
+                    if (adventure.playerMoveW()) {
                         IO.println("You move West");
                     } else {
                         invalidMove();

@@ -1,48 +1,27 @@
 import java.util.ArrayList;
 
 public class Adventure {
-    //Loads classes
+    //Loads player
     Player dovakin;
 
-    public Adventure() {
-        IO.println("Initializing Adventure");
-        Map adventureMap = new Map();
-        adventureMap.createMap();
-        IO.println("Initializing Player");
-        dovakin = new Player(adventureMap.getFirstRoom());
-        IO.println("Player Inventory Size + Contents = " + dovakin.getInventory().size() + dovakin.getInventory() );
+    public Adventure(Room firstRoom) {
+        dovakin = new Player(firstRoom);
+            }
 
+    public boolean playerMoveN() {
+        return dovakin.moveNorth();
     }
 
-    public boolean moveN() {
-        if (dovakin.moveNorth()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean playerMoveS() {
+        return dovakin.moveSouth();
     }
 
-    public boolean moveS() {
-        if (dovakin.moveSouth()) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    public boolean moveE() {
-        if (dovakin.moveEast()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean playerMoveE() {
+        return dovakin.moveEast();
     }
 
-    public boolean moveW() {
-        if (dovakin.moveWest()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean playerMoveW() {
+        return dovakin.moveWest();
     }
 
     public Room currentPos(){
