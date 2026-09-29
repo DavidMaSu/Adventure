@@ -1,11 +1,10 @@
 import java.util.ArrayList;
 public class Map {
 
-    private Room firstRoom;
 
-    public void createMap() {
+    //Egentlig kunne man godt bare have dette som metode men
+    public Room createMap() {
 
-        IO.println("Creating Rooms");
         Room roomWest = new Room("Room West", "Des");
         Room roomNorthWest = new Room("Room North West", "Des");
         Room roomNorth = new Room("Room North", "Des");
@@ -16,7 +15,7 @@ public class Map {
         Room roomSouthWest = new Room("Room South West", "Des");
         Room roomCentral = new Room("Room Central", "Des");
 
-        IO.println("Setting Rooms");
+
         roomWest.setAdjacentRooms(roomNorthWest, null, roomSouthWest, null);
         roomNorthWest.setAdjacentRooms(null, roomNorth, roomWest, null);
         roomNorth.setAdjacentRooms(null, roomNorthEast, null, roomNorthWest);
@@ -28,8 +27,7 @@ public class Map {
         roomCentral.setAdjacentRooms(null, null, roomSouth, null);
 
 
-        firstRoom = roomNorthWest;
-        IO.println("Spawning in Room: " + firstRoom);
+        Room firstRoom = roomNorthWest;
 
         Item sword = new Item("Sword","Magic!");
         Item pot = new Item("Pot", "Infinite soup");
@@ -39,7 +37,7 @@ public class Map {
         Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
         Food suspiciousStew = new Food("Suspicious stew", "A stew that smells amazing", -50);
 
-        roomCentral.addItem(sword);
+        roomNorthWest.addItem(sword);
         roomNorthWest.addItem(pot);
         roomNorth.addItem(flashLight);
 
@@ -47,14 +45,8 @@ public class Map {
         roomNorthWest.addItem(goldenCarrot);
         roomNorth.addItem(suspiciousStew);
 
-        IO.println("Initiating room inventories:");
-        IO.println("Central Room: " + roomCentral.getInventory());
-        IO.println("North West Room: " + roomNorthWest.getInventory());
-        IO.println("North Room: " + roomNorth.getInventory());
-
     }
 
-    public Room getFirstRoom (){
         return firstRoom;
     }
 }

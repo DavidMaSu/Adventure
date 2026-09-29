@@ -1,7 +1,9 @@
 void main() {
     IO.println("Hello group");
-    Adventure adventure = new Adventure();
+    Map map = new Map();
+    Adventure adventure = new Adventure(map.createMap());
     UserInterface UI = new UserInterface(adventure);
 
     UI.move();
 }
+
