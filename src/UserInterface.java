@@ -16,33 +16,34 @@ public class UserInterface {
             //Takes input from room and position to change location or quit
             switch (command) {
                 case "n" -> {
-                    if (adventure.moveN()) {
+                    if (adventure.playerMove(north)) {
                         IO.println("You move North");
                     } else {
                         invalidMove();
                     }
                 }
                 case "s" -> {
-                    if (adventure.moveS()) {
+                    if (adventure.playerMove(south)) {
                         IO.println("You move South");
                     } else {
                         invalidMove();
                     }
                 }
                 case "e" -> {
-                    if (adventure.moveE()) {
+                    if (adventure.playerMove(east)) {
                         IO.println("You move East");
                     } else {
                         invalidMove();
                     }
                 }
                 case "w" -> {
-                    if (adventure.moveW()) {
+                    if (adventure.playerMove(west)) {
                         IO.println("You move West");
                     } else {
                         invalidMove();
                     }
                 }
+                case "health" -> IO.println("Your health is " +adventure.displayHealth());
                 case "take" -> {
                     String name = IO.readln("What do you wanna take? ");
                     //Takes string name item
@@ -56,6 +57,17 @@ public class UserInterface {
                     //Drops string name item
                     Item item = adventure.dropItem(name);
                     IO.println("You have dropped!: " + item);
+                }
+                case "eat" -> {
+                    String name = IO.readln("What do you wanna take? ");
+                if (adventure.playerHasItems(name) || adventure.roomHasItems())
+                    if (name instanceof Food) {
+                    adventure.eat(name);
+                    IO.print("You ate " + name);
+                    }; else {
+                        IO.println("You can't eat this.");
+                    }
+
                 }
                 case "i" -> {
                     if (adventure.playerHasItems()) {
@@ -88,8 +100,10 @@ public class UserInterface {
         IO.println("Type e to go East");
         IO.println("Type w to go West");
         IO.println("Type i to check your inventory");
+        IO.println("Type health to check your status");
+        IO.println("Type eat to eat something in your inventory or room");
         IO.println("Type take to take item");
-        IO.println("Type drop  to drop item");
+        IO.println("Type drop to drop item");
         IO.println("Type look to see room");
         IO.println("Type Exit to quit");
     }
