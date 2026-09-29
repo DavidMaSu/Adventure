@@ -31,13 +31,21 @@ public class Map {
         firstRoom = roomNorthWest;
         IO.println("Spawning in Room: " + firstRoom);
 
-        Item sword = new Item("Sword","Magic!", 1);
-        Item pot = new Item("Pot", "Infinite soup", 2);
-        Item flashLight = new Item("Flashlight", "Never runs out of battery", 3);
+        Item sword = new Item("Sword","Magic!");
+        Item pot = new Item("Pot", "Infinite soup");
+        Item flashLight = new Item("Flashlight", "Never runs out of battery");
+
+        Food bread = new Food("Bread", "A loaf of stale bread", 10);
+        Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
+        Food suspiciousStew = new Food("Suspicious stew", "A stew that smells amazing", -50);
 
         roomCentral.addItem(sword);
         roomNorthWest.addItem(pot);
         roomNorth.addItem(flashLight);
+
+        roomCentral.addItem(bread);
+        roomNorthWest.addItem(goldenCarrot);
+        roomNorth.addItem(suspiciousStew);
 
         IO.println("Initiating room inventories:");
         IO.println("Central Room: " + roomCentral.getInventory());
