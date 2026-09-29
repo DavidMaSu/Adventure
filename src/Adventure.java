@@ -33,6 +33,11 @@ public class Adventure {
         return dovakin.getInventory();
     }
 
+    // Get Player Health
+    public int displayPlayerHealth(){
+        return dovakin.getHealth();
+    }
+
     //Drops item from player
     public Item dropItem(String name){
         Item dropItem = dovakin.removeItem(name);
@@ -49,19 +54,10 @@ public class Adventure {
         }
         return foundItem;
     }
-
-    public String eat(Item food, int position) {
-     position = 0;
-        if (position == 1){
-            dovakin.removeItem(food.getType());
-            dovakin.modifyHealth(food);
-        }
-        if (position == 2){
-            currentPos().removeItem(food.getType());
-            dovakin.modifyHealth(food);
-        }
-
-
-
+    // Tries to eat an item from player or room
+    public EatResult playerEat(String itemName){
+        return dovakin.eat(itemName);
     }
+            ;
+
 }

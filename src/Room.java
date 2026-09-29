@@ -84,14 +84,14 @@ public class Room {
         return null;
     }
 
-    public boolean searchItem(String name) {
+    public Item searchItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
             if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
-                return true;
+                return item;
             }
         }
-        return false;
+        return null;
     }
 
 

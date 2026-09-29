@@ -12,8 +12,12 @@ public class Player {
         this.health = 100;
     }
 
-    public void modifyHealth(Food food) {
-        health += food.getHealthPoints();
+    public void modifyHealth(int foodValue) {
+        health += foodValue;
+    }
+
+    public int getHealth(){
+        return health;
     }
 
     public ArrayList<Item> getInventory() {
@@ -28,7 +32,7 @@ public class Player {
     public Item removeItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
-            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+            if (item.toString().toLowerCase().contains(name)) {
                 getInventory().remove(i);
                 return item;
             }
@@ -36,14 +40,14 @@ public class Player {
         return null;
     }
 
-    public boolean searchItem(String name) {
+    public Item searchItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
             if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
-                return true;
+                return item;
             }
         }
-        return false;
+        return null;
     }
 
 
@@ -93,46 +97,38 @@ public class Player {
         return currentRoom;
     }
 
-    public int eatTry (Item itemName){
-        if (eat(itemName) == EatResult.EATEN)
-            modifyHealth();
+    public EatResult eat(String itemName) {
+        Item inventoryItem = searchItem(itemName);
+        Item roomItem = currentRoom.searchItem(itemName);
+        if (inventoryItem == null && roomItem == null) {
+            return EatResult.NOT_FOUND;
+        }
+        if (inventoryItem instanceof Food food) {
+            modifyHealth(food.getHealthPoints());
+            return EatResult.EATEN;
+        } else if (roomItem instanceof Food food) {
+            modifyHealth(food.getHealthPoints());
+            return EatResult.EATEN;
+        } else {
+            return EatResult.NOT_FOOD;
+        }
     }
 
-    public EatResult eat(Item itemName) {
-        boolean inIventory = false;
-        boolean inRoom = false;
-        if (searchItem(itemName.getType())) {
-            inIventory = true;
-        } else if (currentRoom.searchItem(itemName.getType())) {
-            inRoom = true;
-        }
+    // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
 
-        if (inIventory != false || inRoom != false){
-
-            if (inIventory) {
-                if (isFood(itemName)) {
-                    return EatResult.EATEN;
-                }
-            }
-
-            else if (inRoom) {
-                if (isFood(itemName)) {
-                    return EatResult.EATEN;
-                }
-            }
-
-            else {
-                return EatResult.NOT_FOOD;
-            }
-        }
-        return EatResult.NOT_FOUND;
-
+        public boolean isFood(Item item){
+        if (item instanceof Food food) {
+            modifyHealth(food.getHealthPoints());
+            return true;
+        } else { return false;
     }
 
-    public enum EatResult {NOT_FOUND, NOT_FOOD, EATEN}
-
-    public boolean isFood(Item item){
-        return (item instanceof Food);
+//    public void isFood(Item item){
+//        if (item instanceof Food) {
+//            Food food = (Food) item;
+//            modifyHealth(food.getHealthPoints());
+//        }
+//    }
     }
 }
 
