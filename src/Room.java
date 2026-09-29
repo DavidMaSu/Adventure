@@ -84,7 +84,6 @@ public class Room {
         return null;
     }
 
-
     // Initiate
     public void setAdjacentRooms(Room North, Room East, Room South, Room West) {
         setNorth(North);
