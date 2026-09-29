@@ -58,11 +58,10 @@ public class UserInterface {
                     IO.println("You have dropped!: " + item);
                 }
                 case "i" -> {
-                    if (adventure.playerHasItems()){
+                    if (adventure.playerHasItems()) {
                         IO.println("You are carrying:");
                         IO.println(adventure.playerDisplayItems());
-                    }
-                    else {
+                    } else {
                         IO.println("You are not carrying anything.");
                     }
                 }
@@ -70,11 +69,11 @@ public class UserInterface {
                 case "exit" -> running = false;
                 case "look" -> {
                     String description = ("You look and see that you are in " + adventure.currentPos());
-                    if (adventure.hasItems()){
+                    if (adventure.hasItems()) {
                         IO.println(description + "\n" + "Here you see: " + adventure.displayItems());
-                        } else {
+                    } else {
                         IO.println(description + "\n" + "There is nothing here");
-                        }
+                    }
                 }
                 default -> IO.println("Invalid Command");
             }
