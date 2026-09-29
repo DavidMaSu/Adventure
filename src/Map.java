@@ -45,8 +45,6 @@ public class Map {
         roomNorthWest.addItem(goldenCarrot);
         roomNorth.addItem(suspiciousStew);
 
-    }
-
         return firstRoom;
     }
 }

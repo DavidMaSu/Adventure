@@ -12,20 +12,20 @@ public class Player {
         this.health = 100;
     }
 
-    public String modifyHealth(Food food) {
-         health += food.getHealthPoints();
-             return "current heath " + health;
-        }
+    public void modifyHealth(Food food) {
+        health += food.getHealthPoints();
+    }
 
-    public ArrayList<Item> getInventory(){
+    public ArrayList<Item> getInventory() {
         return inventory;
     }
 
-    public void addItem(Item itemNew){
+    public void addItem(Item itemNew) {
         inventory.add(itemNew);
     }
+
     //Keep track of player inventory in order to drop item
-    public Item removeItem(String name){
+    public Item removeItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
             if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
@@ -35,6 +35,17 @@ public class Player {
         }
         return null;
     }
+
+    public boolean searchItem(String name) {
+        for (int i = 0; i < getInventory().size(); i++) {
+            Item item = getInventory().get(i);
+            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public boolean move(String move) {
 
@@ -77,8 +88,52 @@ public class Player {
         }
         return running;
     }
-    public Room getCurrentRoom(){
+
+    public Room getCurrentRoom() {
         return currentRoom;
     }
+
+    public int eatTry (Item itemName){
+        if (eat(itemName) == EatResult.EATEN)
+            modifyHealth();
+    }
+
+    public EatResult eat(Item itemName) {
+        boolean inIventory = false;
+        boolean inRoom = false;
+        if (searchItem(itemName.getType())) {
+            inIventory = true;
+        } else if (currentRoom.searchItem(itemName.getType())) {
+            inRoom = true;
+        }
+
+        if (inIventory != false || inRoom != false){
+
+            if (inIventory) {
+                if (isFood(itemName)) {
+                    return EatResult.EATEN;
+                }
+            }
+
+            else if (inRoom) {
+                if (isFood(itemName)) {
+                    return EatResult.EATEN;
+                }
+            }
+
+            else {
+                return EatResult.NOT_FOOD;
+            }
+        }
+        return EatResult.NOT_FOUND;
+
+    }
+
+    public enum EatResult {NOT_FOUND, NOT_FOOD, EATEN}
+
+    public boolean isFood(Item item){
+        return (item instanceof Food);
+    }
+}
 
   

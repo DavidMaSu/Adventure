@@ -16,28 +16,28 @@ public class UserInterface {
             //Takes input from room and position to change location or quit
             switch (command) {
                 case "n" -> {
-                    if (adventure.playerMove(north)) {
+                    if (adventure.playerMove("n")) {
                         IO.println("You move North");
                     } else {
                         invalidMove();
                     }
                 }
                 case "s" -> {
-                    if (adventure.playerMove(south)) {
+                    if (adventure.playerMove("s")) {
                         IO.println("You move South");
                     } else {
                         invalidMove();
                     }
                 }
                 case "e" -> {
-                    if (adventure.playerMove(east)) {
+                    if (adventure.playerMove("e")) {
                         IO.println("You move East");
                     } else {
                         invalidMove();
                     }
                 }
                 case "w" -> {
-                    if (adventure.playerMove(west)) {
+                    if (adventure.playerMove("w")) {
                         IO.println("You move West");
                     } else {
                         invalidMove();
@@ -60,11 +60,11 @@ public class UserInterface {
                 }
                 case "eat" -> {
                     String name = IO.readln("What do you wanna take? ");
-                if (adventure.playerHasItems(name) || adventure.roomHasItems())
+                if (adventure.itemPresent())
                     if (name instanceof Food) {
                     adventure.eat(name);
                     IO.print("You ate " + name);
-                    }; else {
+                    } else {
                         IO.println("You can't eat this.");
                     }
 
