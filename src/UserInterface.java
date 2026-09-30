@@ -69,6 +69,16 @@ public class UserInterface {
                     }
 
                 }
+                case "drink" -> {
+                    String itemNameToDrink = IO.readln("What do you want to drink? ").trim().toLowerCase();
+                    DrinkResult result = adventure.playerDrink(itemNameToDrink);
+                    switch (result) {
+                        case DRANK -> IO.println("You drank " + itemNameToDrink);
+                        case NOT_FOUND -> IO.println("There is no such item");
+                        case NOT_DRINKABLE -> IO.println("You can't drink " + itemNameToDrink + " you bozo.");
+                        default -> IO.println("Error in item handling, EatResult did not return enum value");
+                    }
+                }
                 case "i" -> {
                     if (adventure.playerHasItems()) {
                         IO.println("You are carrying:");

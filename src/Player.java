@@ -116,6 +116,25 @@ public class Player {
         }
     }
 
+    public DrinkResult drink(String itemName) {
+        Item inventoryItem = searchItem(itemName);
+        Item roomItem = currentRoom.searchItem(itemName);
+        if (inventoryItem == null && roomItem == null) {
+            return DrinkResult.NOT_FOUND;
+        }
+        if (inventoryItem instanceof Liquid liquid) {
+            modifyHealth(liquid.getHealthPoints());
+            removeItem(itemName);
+            return DrinkResult.DRANK;
+        } else if (roomItem instanceof Liquid liquid) {
+            modifyHealth(liquid.getHealthPoints());
+            currentRoom.removeItem(itemName);
+            return DrinkResult.DRANK;
+        } else {
+            return DrinkResult.NOT_DRINKABLE;
+        }
+    }
+
     // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
 
         public boolean isFood(Item item){

@@ -58,6 +58,8 @@ public class Adventure {
     public EatResult playerEat(String itemName){
         return dovakin.eat(itemName);
     }
-            ;
+    public DrinkResult playerDrink(String itemName){
+        return dovakin.drink(itemName);
+    }
 
 }

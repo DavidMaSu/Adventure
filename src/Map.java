@@ -37,6 +37,10 @@ public class Map {
         Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
         Food suspiciousStew = new Food("Suspicious stew", "A stew that smells amazing", -50);
 
+        Liquid water = new Liquid("Water", "Nice cold water", 10);
+        Liquid swampWater = new Liquid("Swamp water", "Suspicious looking water", -20);
+        Liquid cocaCola = new Liquid("Coca Cola", "A glass bottle of coca cola", 40);
+
         roomNorthWest.addItem(sword);
         roomNorthWest.addItem(pot);
         roomNorth.addItem(flashLight);
@@ -44,6 +48,10 @@ public class Map {
         roomCentral.addItem(bread);
         roomNorthWest.addItem(goldenCarrot);
         roomNorth.addItem(suspiciousStew);
+
+        roomCentral.addItem(water);
+        roomNorthWest.addItem(swampWater);
+        roomNorth.addItem(cocaCola);
 
         return firstRoom;
     }
