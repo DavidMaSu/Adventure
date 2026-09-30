@@ -84,6 +84,17 @@ public class Room {
         return null;
     }
 
+    public Item searchItem(String name) {
+        for (int i = 0; i < getInventory().size(); i++) {
+            Item item = getInventory().get(i);
+            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+
     // Initiate
     public void setAdjacentRooms(Room North, Room East, Room South, Room West) {
         setNorth(North);

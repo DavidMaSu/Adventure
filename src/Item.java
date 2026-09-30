@@ -14,7 +14,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item " + type + " " + description;
+        return "< " + type + " > " + description;
     }
 }
 

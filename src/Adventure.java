@@ -8,20 +8,8 @@ public class Adventure {
         dovakin = new Player(firstRoom);
             }
 
-    public boolean playerMoveN() {
-        return dovakin.moveNorth();
-    }
-
-    public boolean playerMoveS() {
-        return dovakin.moveSouth();
-    }
-
-    public boolean playerMoveE() {
-        return dovakin.moveEast();
-    }
-
-    public boolean playerMoveW() {
-        return dovakin.moveWest();
+    public boolean playerMove(String direction) {
+        return dovakin.move(direction);
     }
 
     public Room currentPos(){
@@ -45,6 +33,11 @@ public class Adventure {
         return dovakin.getInventory();
     }
 
+    // Get Player Health
+    public int displayPlayerHealth(){
+        return dovakin.getHealth();
+    }
+
     //Drops item from player
     public Item dropItem(String name){
         Item dropItem = dovakin.removeItem(name);
@@ -61,4 +54,10 @@ public class Adventure {
         }
         return foundItem;
     }
+    // Tries to eat an item from player or room
+    public EatResult playerEat(String itemName){
+        return dovakin.eat(itemName);
+    }
+            ;
+
 }

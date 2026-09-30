@@ -16,36 +16,36 @@ public class UserInterface {
             //Takes input from room and position to change location or quit
             switch (command) {
                 case "n" -> {
-                    if (adventure.playerMove(north)) {
+                    if (adventure.playerMove("n")) {
                         IO.println("You move North");
                     } else {
                         invalidMove();
                     }
                 }
                 case "s" -> {
-                    if (adventure.playerMove(south)) {
+                    if (adventure.playerMove("s")) {
                         IO.println("You move South");
                     } else {
                         invalidMove();
                     }
                 }
                 case "e" -> {
-                    if (adventure.playerMove(east)) {
+                    if (adventure.playerMove("e")) {
                         IO.println("You move East");
                     } else {
                         invalidMove();
                     }
                 }
                 case "w" -> {
-                    if (adventure.playerMove(west)) {
+                    if (adventure.playerMove("w")) {
                         IO.println("You move West");
                     } else {
                         invalidMove();
                     }
                 }
-                case "health" -> IO.println("Your health is " +adventure.displayHealth());
+                case "health" -> IO.println("Your health is " + adventure.displayPlayerHealth());
                 case "take" -> {
-                    String name = IO.readln("What do you wanna take? ");
+                    String name = IO.readln("What do you wanna take? ").trim().toLowerCase();
                     //Takes string name item
                     Item playerItem = adventure.addItem(name);
                     IO.println("Added: " + playerItem + " to inventory!");
@@ -53,19 +53,19 @@ public class UserInterface {
                     IO.println(adventure.dovakin.getInventory());
                 }
                 case "drop" -> {
-                    String name = IO.readln("What do you wanna drop? ");
+                    String name = IO.readln("What do you wanna drop? ").trim().toLowerCase();
                     //Drops string name item
                     Item item = adventure.dropItem(name);
                     IO.println("You have dropped!: " + item);
                 }
                 case "eat" -> {
-                    String name = IO.readln("What do you wanna take? ");
-                if (adventure.playerHasItems(name) || adventure.roomHasItems())
-                    if (name instanceof Food) {
-                    adventure.eat(name);
-                    IO.print("You ate " + name);
-                    }; else {
-                        IO.println("You can't eat this.");
+                    String itemNameToEat = IO.readln("What do you want to eat? ").trim().toLowerCase();
+                    EatResult result = adventure.playerEat(itemNameToEat);
+                    switch (result) {
+                        case EATEN -> IO.println("You ate " + itemNameToEat);
+                        case NOT_FOUND -> IO.println("There is no such item");
+                        case NOT_FOOD -> IO.println("You can't eat " + itemNameToEat + " you bozo.");
+                        default -> IO.println("Error in item handling, EatResult did not return enum value");
                     }
 
                 }
