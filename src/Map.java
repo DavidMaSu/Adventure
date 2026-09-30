@@ -30,8 +30,8 @@ public class Map {
         Room firstRoom = roomNorthWest;
 
         Item sword = new Item("Sword","Magic!");
-        Item pot = new Item("Pot", "Infinite soup");
-        Item flashLight = new Item("Flashlight", "Never runs out of battery");
+        Item pot = new Item("Pot", "Infinite storage!");
+        Item flashLight = new Item("Flashlight", "Never runs out of battery!");
 
         Food bread = new Food("Bread", "A loaf of stale bread", 10);
         Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
