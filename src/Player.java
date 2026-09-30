@@ -105,9 +105,11 @@ public class Player {
         }
         if (inventoryItem instanceof Food food) {
             modifyHealth(food.getHealthPoints());
+            removeItem(itemName);
             return EatResult.EATEN;
         } else if (roomItem instanceof Food food) {
             modifyHealth(food.getHealthPoints());
+            currentRoom.removeItem(itemName);
             return EatResult.EATEN;
         } else {
             return EatResult.NOT_FOOD;
