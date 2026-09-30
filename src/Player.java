@@ -49,9 +49,21 @@ public class Player {
         }
         return null;
     }
-
-
-    public boolean move(String move) {
+    public boolean move(String direction) {
+        Room nextRoom = switch (direction){
+            case "n" -> currentRoom.getNorth();
+            case "e" -> currentRoom.getEast();
+            case "s" -> currentRoom.getSouth();
+            case "w" -> currentRoom.getWest();
+            default -> null;
+        };
+        if(null == nextRoom){
+            return false;
+        }
+        currentRoom = nextRoom;
+        return true;
+    }
+    /*public boolean move(String move) {
 
         boolean running = true;
 
@@ -91,7 +103,7 @@ public class Player {
             }
         }
         return running;
-    }
+    } */
 
     public Room getCurrentRoom() {
         return currentRoom;
