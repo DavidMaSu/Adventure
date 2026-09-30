@@ -16,15 +16,15 @@ public class Map {
         Room roomCentral = new Room("Room Central", "Des");
 
 
-        roomWest.setAdjacentRooms(roomNorthWest, null, roomSouthWest, null);
-        roomNorthWest.setAdjacentRooms(null, roomNorth, roomWest, null);
-        roomNorth.setAdjacentRooms(null, roomNorthEast, null, roomNorthWest);
-        roomNorthEast.setAdjacentRooms(null, null, roomEast, roomNorth);
-        roomEast.setAdjacentRooms(roomNorthEast, null, roomSouthEast, null);
-        roomSouthEast.setAdjacentRooms(roomEast, null, null, roomSouth);
-        roomSouth.setAdjacentRooms(roomCentral, roomSouthEast, null, roomSouthWest);
-        roomSouthWest.setAdjacentRooms(roomWest, roomSouth, null, null);
-        roomCentral.setAdjacentRooms(null, null, roomSouth, null);
+        roomWest.     setAdjacentRooms(roomNorthWest, null,          roomSouthWest, null);
+        roomNorthWest.setAdjacentRooms(null,          roomNorth,     roomWest,      null);
+        roomNorth.    setAdjacentRooms(null,          roomNorthEast, null,          roomNorthWest);
+        roomNorthEast.setAdjacentRooms(null,          null,          roomEast,      roomNorth);
+        roomEast.     setAdjacentRooms(roomNorthEast, null,          roomSouthEast, null);
+        roomSouthEast.setAdjacentRooms(roomEast,      null,          null,          roomSouth);
+        roomSouth.    setAdjacentRooms(roomCentral,   roomSouthEast, null,          roomSouthWest);
+        roomSouthWest.setAdjacentRooms(roomWest,      roomSouth,     null,          null);
+        roomCentral.  setAdjacentRooms(null,          null,          roomSouth,     null);
 
 
         Room firstRoom = roomNorthWest;
