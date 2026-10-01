@@ -29,21 +29,37 @@ public class Map {
 
         Room firstRoom = roomNorthWest;
 
-        Item sword = new Item("Sword","Magic!");
-        Item pot = new Item("Pot", "Infinite storage!");
+        Item spoon = new Item("Spoon","A common spoon, new very dangerous");
+        Item pot = new Item("Pot", "but it doesnt hold any soup");
         Item flashLight = new Item("Flashlight", "Never runs out of battery!");
 
         Food bread = new Food("Bread", "A loaf of stale bread", 10);
         Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
         Food suspiciousStew = new Food("Suspicious stew", "A stew that smells amazing", -50);
 
-        roomNorthWest.addItem(sword);
+        RangedWeapon lasgun = new RangedWeapon("Lasgun", "A highly dangerous laser gun", 100, 50);
+        MeleeWeapon blade = new MeleeWeapon("Blade", "A typical sword", 20);
+        MeleeWeapon crysknife = new MeleeWeapon("Crysknife", "A knife with a blade made from the tooth of a Shaihulud", 60);
+
+        Liquid water = new Liquid("Water", "Nice cold water", 10);
+        Liquid swampWater = new Liquid("Swamp water", "Suspicious looking water", -20);
+        Liquid cocaCola = new Liquid("Coca Cola", "A glass bottle of coca cola", 40);
+
+        roomNorthWest.addItem(spoon);
         roomNorthWest.addItem(pot);
         roomNorth.addItem(flashLight);
 
-        roomCentral.addItem(bread);
+        roomEast.addItem(bread);
         roomNorthWest.addItem(goldenCarrot);
         roomNorth.addItem(suspiciousStew);
+
+        roomCentral.addItem(water);
+        roomNorthWest.addItem(swampWater);
+        roomNorth.addItem(cocaCola);
+
+        roomSouthWest.addItem(lasgun);
+        roomCentral.addItem(crysknife);
+        roomNorthWest.addItem(blade);
 
         return firstRoom;
     }
