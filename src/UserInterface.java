@@ -77,7 +77,7 @@ public class UserInterface {
                 }
                 case "equip" -> {
                     String itemName = IO.readln("doe you want to equip a weapon").trim().toLowerCase();
-                    Equip result = adventure.equip(itemName);
+                    Equip result = adventure.playerEquip(itemName);
                     switch (result) {
                         case EQUIP -> IO.println("you have equipped " + itemName);
                         case NOT_FOUND -> IO.println("there is no weapon");
@@ -87,7 +87,7 @@ public class UserInterface {
                      }
                 case "attack" -> {
                     String itemName = IO.readln("doe you want to attack").trim().toLowerCase();
-                    Attack result = adventure.attack(itemName);
+                    Attack result = adventure.playerAttack(itemName);
                     switch (result) {
                         case ATTACK -> IO.println("you attack with " + itemName);
                         case NO_AMMO -> IO.println("you need ammo ");
