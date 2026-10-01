@@ -8,6 +8,14 @@ public class Adventure {
         dovakin = new Player(firstRoom);
             }
 
+            public Equip playerEquip(String name){
+        return dovakin.equip(name);
+            }
+
+            public Attack playerAttack(){
+        return dovakin.attack();
+            }
+
     public boolean playerMove(String direction) {
         return dovakin.move(direction);
     }
