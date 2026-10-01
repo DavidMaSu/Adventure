@@ -156,19 +156,30 @@ public class Player {
             return Equip.CANNOT_EQUIP;
         }
     }
+//    public Attack attack(){
+//        int usesLeft = equippedWeapon.use();
+//        if (equippedWeapon == null){
+//            return Attack.CANNOT_ATTACK;
+//        }
+//        if (!equippedWeapon.canUse()){
+//            return Attack.NO_AMMO;
+//        }
+//        if (equippedWeapon.canUse()){
+//            return Attack.ATTACK;
+//        } else {
+//            return Attack.ATTACK;
+//        }
+//    }
+
     public Attack attack(){
-        int usesLeft = equippedWeapon.use();
-        if (equippedWeapon == null){
+        if (equippedWeapon == null){ //No weapon equipped
             return Attack.CANNOT_ATTACK;
         }
         if (!equippedWeapon.canUse()){
             return Attack.NO_AMMO;
         }
-        if (equippedWeapon.canUse()){
-            return Attack.ATTACK;
-        } else {
-            return Attack.ATTACK;
-        }
+        equippedWeapon.use();
+        return Attack.ATTACK;
     }
 
     // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
