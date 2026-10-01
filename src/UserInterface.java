@@ -76,20 +76,20 @@ public class UserInterface {
 
                 }
                 case "equip" -> {
-                    String itemName = IO.readln("doe you want to equip a weapon").trim().toLowerCase();
+                    String itemName = IO.readln("What weapon do you want to equip?").trim().toLowerCase();
                     Equip result = adventure.playerEquip(itemName);
                     switch (result) {
-                        case EQUIP -> IO.println("you have equipped " + itemName);
+                        case EQUIP -> IO.println("you have equipped " + adventure.getWeapon());
                         case NOT_FOUND -> IO.println("there is no weapon");
                         case CANNOT_EQUIP -> IO.println("item is not a weapon");
                         default -> IO.println("Error in handling, weaponResult did not return enum value");
                     }
                      }
                 case "attack" -> {
-                    String itemName = IO.readln("doe you want to attack").trim().toLowerCase();
-                    Attack result = adventure.playerAttack(itemName);
+                    String attack = IO.readln("Do you want to attack?y/n").trim().toLowerCase();
+                    Attack result = adventure.playerAttack();
                     switch (result) {
-                        case ATTACK -> IO.println("you attack with " + itemName);
+                        case ATTACK -> IO.println("you attack with " + adventure.getWeapon());
                         case NO_AMMO -> IO.println("you need ammo ");
                         case CANNOT_ATTACK -> IO.println("you cant attack ");
                         default -> IO.println("Error in handling, attackResult did not return enum value ");
@@ -130,7 +130,7 @@ public class UserInterface {
         }
         IO.println("Exiting Program");
     }
- }
+
 
     private void displayHelpMenu() {
         IO.println("Type n to go North");
