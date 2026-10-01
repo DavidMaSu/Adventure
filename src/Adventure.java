@@ -15,6 +15,9 @@ public class Adventure {
             public Attack playerAttack(){
         return dovakin.attack();
             }
+    public Weapon getWeapon(){
+        return dovakin.getEquippedWeapon();
+    }
 
     public boolean playerMove(String direction) {
         return dovakin.move(direction);

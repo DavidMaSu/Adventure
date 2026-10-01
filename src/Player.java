@@ -37,7 +37,7 @@ public class Player {
     public Item searchItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
-            if (item.toString().contains(name)) {
+            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
                 return item;
             }
         }
@@ -141,27 +141,25 @@ public class Player {
         }
     }
 
-    public Item getEquippedWeapon() {
+    public Weapon getEquippedWeapon() {
         return equippedWeapon;
     }
 
     public Equip equip(String weaponName){
         Item item = searchItem(weaponName);
-        if ((item instanceof Weapon)){
+        if (item instanceof Weapon){
             this.equippedWeapon = (Weapon) item;
             return Equip.EQUIP;
-        }
-        if (!(item instanceof Weapon)){
-            this.equippedWeapon = null;
-            return Equip.CANNOT_EQUIP;
-        } else {
+        } else if (item == null){
             return Equip.NOT_FOUND;
+        } else {
+            return Equip.CANNOT_EQUIP;
         }
     }
     public Attack attack(){
         int usesLeft = equippedWeapon.use();
         if (equippedWeapon == null){
-            return Attack.NO_WEAPON;
+            return Attack.CANNOT_ATTACK;
         }
         if (!equippedWeapon.canUse()){
             return Attack.NO_AMMO;
