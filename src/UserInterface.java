@@ -45,18 +45,24 @@ public class UserInterface {
                 }
                 case "health" -> IO.println("Your health is " + adventure.displayPlayerHealth());
                 case "take" -> {
-                    String name = IO.readln("What do you wanna take? ").trim().toLowerCase();
+                    String itemName = IO.readln("What do you wanna take? ").trim().toLowerCase();
                     //Takes string name item
-                    Item playerItem = adventure.addItem(name);
-                    IO.println("Added: " + playerItem + " to inventory!");
-                    //Debug test to see if items goes to inventory
-                    IO.println(adventure.dovakin.getInventory());
+                    if (adventure.playerTakeItemFromRoom(itemName)) {
+                        IO.println("Added: " + itemName + " to inventory!");
+                    } else {
+                        IO.println("Couldn't find a " + itemName + " to pick up.");
+                        //Debug test to see if items goes to inventory
+                        IO.println(adventure.dovakin.getInventory());
+                    }
                 }
                 case "drop" -> {
-                    String name = IO.readln("What do you wanna drop? ").trim().toLowerCase();
+                    String itemName = IO.readln("What do you wanna drop? ").trim().toLowerCase();
                     //Drops string name item
-                    Item item = adventure.dropItem(name);
-                    IO.println("You have dropped!: " + item);
+                    if (adventure.dropItem(itemName)) {
+                        IO.println("You dropped " + itemName);
+                    } else {
+                        IO.println("You cannot drop " + itemName + " because it appears you are not carrying it.");
+                    }
                 }
                 case "eat" -> {
                     String itemNameToEat = IO.readln("What do you want to eat? ").trim().toLowerCase();

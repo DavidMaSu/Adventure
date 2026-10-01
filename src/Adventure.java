@@ -39,20 +39,26 @@ public class Adventure {
     }
 
     //Drops item from player
-    public Item dropItem(String name){
-        Item dropItem = dovakin.removeItem(name);
-        if (dropItem != null){
+    public boolean dropItem(String name) {
+        Item dropItem = dovakin.searchItem(name);
+        if (dropItem != null) {
             currentPos().addItem(dropItem);
+            dovakin.removeItem(name);
+            return true;
+        } else {
+            return false;
         }
-        return dropItem;
     }
     //Adds item to player
-    public Item addItem(String name){
+
+    public boolean playerTakeItemFromRoom(String name) {
         Item foundItem = currentPos().removeItem(name);
         if (foundItem != null) {
             dovakin.addItem(foundItem);
+            return true;
+        } else {
+            return false;
         }
-        return foundItem;
     }
     // Tries to eat an item from player or room
     public EatResult playerEat(String itemName){

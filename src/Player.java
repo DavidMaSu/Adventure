@@ -29,21 +29,14 @@ public class Player {
     }
 
     //Keep track of player inventory in order to drop item
-    public Item removeItem(String name) {
-        for (int i = 0; i < getInventory().size(); i++) {
-            Item item = getInventory().get(i);
-            if (item.toString().toLowerCase().contains(name)) {
-                getInventory().remove(i);
-                return item;
-            }
-        }
-        return null;
+    public void removeItem(String name) {
+        inventory.remove(searchItem(name));
     }
 
     public Item searchItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
-            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+            if (item.toString().contains(name)) {
                 return item;
             }
         }
