@@ -5,6 +5,7 @@ public class Player {
     private Room currentRoom;
     private ArrayList<Item> inventory = new ArrayList<>();
     private int health;
+    private Weapon equippedWeapon = null;
 
 
     public Player(Room firstroom) {
@@ -137,6 +138,38 @@ public class Player {
             return DrinkResult.DRANK;
         } else {
             return DrinkResult.NOT_DRINKABLE;
+        }
+    }
+
+    public Item getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
+    public Equip equip(String weaponName){
+        Item item = searchItem(weaponName);
+        if ((item instanceof Weapon)){
+            this.equippedWeapon = (Weapon) item;
+            return Equip.EQUIP;
+        }
+        if (!(item instanceof Weapon)){
+            this.equippedWeapon = null;
+            return Equip.CANNOT_EQUIP;
+        } else {
+            return Equip.NOT_FOUND;
+        }
+    }
+    public Attack attack(){
+        int usesLeft = equippedWeapon.use();
+        if (equippedWeapon == null){
+            return Attack.NO_WEAPON;
+        }
+        if (!equippedWeapon.canUse()){
+            return Attack.NO_AMMO;
+        }
+        if (equippedWeapon.canUse()){
+            return Attack.ATTACK;
+        } else {
+            return Attack.ATTACK;
         }
     }
 
