@@ -1,0 +1,2 @@
+public enum Attack {NO_AMMO, CANNOT_ATTACK, ATTACK
+}
