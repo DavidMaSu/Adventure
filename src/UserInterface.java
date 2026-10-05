@@ -68,7 +68,12 @@ public class UserInterface {
                     String itemNameToEat = IO.readln("What do you want to eat? ").trim().toLowerCase();
                     EatResult result = adventure.playerEat(itemNameToEat);
                     switch (result) {
-                        case EATEN -> IO.println("You ate " + itemNameToEat);
+                        case EATEN -> {
+                            IO.println("You ate " + itemNameToEat);
+                            if (adventure.displayPlayerHealth() <= 0){
+                                IO.println("You poisoned yourself... You have died...");
+                            }
+                        }
                         case NOT_FOUND -> IO.println("There is no such item");
                         case NOT_FOOD -> IO.println("You can't eat " + itemNameToEat + " you bozo.");
                         default -> IO.println("Error in item handling, EatResult did not return enum value");
@@ -86,13 +91,34 @@ public class UserInterface {
                     }
                      }
                 case "attack" -> {
-                    String attack = IO.readln("Do you want to attack?y/n").trim().toLowerCase();
-                    Attack result = adventure.playerAttack();
-                    switch (result) {
-                        case ATTACK -> IO.println("you attack with " + adventure.getWeapon());
-                        case NO_AMMO -> IO.println("you need ammo ");
-                        case CANNOT_ATTACK -> IO.println("you cant attack ");
-                        default -> IO.println("Error in handling, attackResult did not return enum value ");
+                    String targetName = IO.readln("Who do you want to attack?").trim().toLowerCase();
+                    Enemy targetEnemy = adventure.findEnemyInRoom(targetName);
+                    if (targetEnemy == null){
+                        IO.println("There is no enemy named: " + targetName);
+                    } else {
+                        Attack result = adventure.playerAttack();
+                        switch (result) {
+                            case ATTACK -> {
+                                IO.println("you attack " + targetEnemy.getName() +
+                                        "with " + adventure.getWeapon());
+                                if (targetEnemy.getHealth() <= 0){
+                                    IO.println("You have slain the " + targetEnemy.getName() + "!");
+                                } else {
+                                    IO.println("The " + targetEnemy.getName() +
+                                            "survived and counter-attacks");
+                                    targetEnemy.hit(adventure.dovakin);
+                                }
+                                if (adventure.isPlayerDead()) {
+                                    IO.println("You have died....");
+                                } else {
+                                    IO.println("You survived the hit! You health is now " +
+                                            adventure.displayPlayerHealth());
+                                }
+                            }
+                            case NO_AMMO -> IO.println("you need ammo ");
+                            case CANNOT_ATTACK -> IO.println("you cant attack ");
+                            default -> IO.println("Error in handling, attackResult did not return enum value ");
+                        }
                     }
                 }
 
@@ -100,7 +126,12 @@ public class UserInterface {
                     String itemNameToDrink = IO.readln("What do you want to drink? ").trim().toLowerCase();
                     DrinkResult result = adventure.playerDrink(itemNameToDrink);
                     switch (result) {
-                        case DRANK -> IO.println("You drank " + itemNameToDrink);
+                        case DRANK -> {
+                            IO.println("You drank " + itemNameToDrink);
+                            if (adventure.displayPlayerHealth() <= 0){
+                                IO.println("You poisoned yourself... You have died...");
+                            }
+                        }
                         case NOT_FOUND -> IO.println("There is no such item");
                         case NOT_DRINKABLE -> IO.println("You can't drink " + itemNameToDrink + " you bozo.");
                         default -> IO.println("Error in item handling, EatResult did not return enum value");

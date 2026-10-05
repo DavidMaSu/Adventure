@@ -184,6 +184,12 @@ public class Player {
             equippedWeapon.use();
             return Attack.ATTACK;
     }
+    public void hit(int damage){
+            this.health -= health;
+    }
+    public boolean isDead(){
+        return this.health <= 0;
+    }
 
     // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
 

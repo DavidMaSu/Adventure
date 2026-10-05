@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Adventure {
     //Loads player
     Player dovakin;
+    Enemy enemy;
 
     public Adventure(Room firstRoom) {
         dovakin = new Player(firstRoom);
@@ -77,6 +78,15 @@ public class Adventure {
     }
     public DrinkResult playerDrink(String itemName){
         return dovakin.drink(itemName);
+    }
+    public boolean isPlayerDead(){
+        return dovakin.isDead();
+    }
+    public boolean isEnemyDead(){
+        return enemy.isDead();
+    }
+    public Enemy findEnemyInRoom(String enemyName){
+        return currentPos().getEnemy(enemyName);
     }
 
 }
