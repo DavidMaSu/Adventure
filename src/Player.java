@@ -6,6 +6,7 @@ public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
     private int health;
     private Weapon equippedWeapon = null;
+    private Enemy enemy;
 
 
     public Player(Room firstroom) {
@@ -178,8 +179,10 @@ public class Player {
         if (!equippedWeapon.canUse()){
             return Attack.NO_AMMO;
         }
-        equippedWeapon.use();
-        return Attack.ATTACK;
+            int damage = equippedWeapon.getDamage();
+            enemy.hit(damage);
+            equippedWeapon.use();
+            return Attack.ATTACK;
     }
 
     // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
