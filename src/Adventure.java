@@ -103,4 +103,8 @@ public class Adventure {
         return !currentPos().getEnemies().isEmpty();
     }
 
+    public void playerTakeDamage(int damage){
+        this.dovakin.hit(damage);
+    }
+
 }

@@ -106,7 +106,7 @@ public class UserInterface {
                                 } else {
                                     IO.println("The " + targetEnemy.getName() +
                                             "survived and counter-attacks");
-                                    adventure.dovakin.hit(targetEnemy.getWeapon().getDamage());
+                                    adventure.playerTakeDamage(targetEnemy.getAttackDamage());
                                 }
                                 if (adventure.dovakin.getHealth() > 0){
                                     IO.println("You survived! Your health is now " + adventure.displayPlayerHealth());

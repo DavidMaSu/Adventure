@@ -21,6 +21,10 @@ public class Enemy {
         this.health -= damage;
     }
 
+    public int getAttackDamage(){
+        return this.weapon.getDamage();
+    }
+
     public String getName() {
         return name;
     }
