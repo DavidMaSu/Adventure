@@ -149,16 +149,17 @@ public class UserInterface {
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
                 case "look" -> {
-                    String description = ("You look and see that you are in " + adventure.currentPos());
+
+                    IO.println("You look and see that you are in " + adventure.currentPos());
                     if (adventure.hasEnemies()){
                         IO.println("Watch out! " + adventure.displayEnemies());
                     } else {
-                        IO.println(description + "\n" + "There is no enemies here");
+                        IO.println("There are no enemies here");
                     }
                     if (adventure.hasItems()) {
-                        IO.println(description + "\n" + "Here you see: " + adventure.displayItems());
+                        IO.println("Here you see: " + adventure.displayItems());
                     } else {
-                        IO.println(description + "\n" + "There is no items here");
+                        IO.println("There is no items here");
                     }
                 }
                 default -> IO.println("Invalid Command");
