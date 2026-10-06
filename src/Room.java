@@ -5,6 +5,7 @@ public class Room {
     private final String name;
     private final String description;
     private ArrayList<Item> inventory = new ArrayList<>();
+    private ArrayList<Enemy> enemies = new ArrayList<>();
     private Room north;
     private Room east;
     private Room south;
@@ -72,6 +73,23 @@ public class Room {
     public void addItem(Item itemNew){
         inventory.add(itemNew);
     }
+
+    public void addEnemy(Enemy enemyNew){
+        enemies.add(enemyNew);
+    }
+    public void removeEnmemy(Enemy enemy){
+        enemies.remove(enemy);
+    }
+
+    public Enemy getEnemy(String name){
+        for(Enemy enemy: enemies){
+            if (enemy.getName()){
+                return enemy;
+            }
+        }
+        return null;
+    }
+
     //Keeps track of room items in order to add them to player
     public Item removeItem(String name) {
         for (int i = 0; i < getInventory().size(); i++) {
