@@ -40,10 +40,19 @@ public class Map {
         RangedWeapon lasgun = new RangedWeapon("Lasgun", "A highly dangerous laser gun", 100, 50);
         MeleeWeapon blade = new MeleeWeapon("Blade", "A typical sword", 20);
         MeleeWeapon crysknife = new MeleeWeapon("Crysknife", "A knife with a blade made from the tooth of a Shaihulud", 60);
+        MeleeWeapon claws = new MeleeWeapon("Claws", "sharp claws from animals", 15);
 
         Liquid water = new Liquid("Water", "Nice cold water", 10);
         Liquid swampWater = new Liquid("Swamp water", "Suspicious looking water", -20);
         Liquid cocaCola = new Liquid("Coca Cola", "A glass bottle of coca cola", 40);
+
+        // mangler weapon
+        Enemy dragon = new Enemy("Dragon ", 200, "A gigantic red, scaly creature of myth brought to life.", lasgun);
+        Enemy racoon = new Enemy("Racoon", 5, "Small, furry, and dangerous.", claws);
+        Enemy goblin = new Enemy("Goblin", 50,"Skinny humanoid with pale skin and red oval eyes.", blade);
+        Enemy demon = new Enemy("Deamon", 100, "Tall dark like a shadow, as dangerous as devious", crysknife);
+        Enemy devil = new Enemy("Devil", 150,"Blue-skinned, horned, with sharp teeth and venomous fangs.", claws);
+        Enemy zombie = new Enemy("Zombie", 80, "Decomposing humans, moving and growing", blade);
 
         roomNorthWest.addItem(spoon);
         roomNorthWest.addItem(pot);
@@ -60,6 +69,14 @@ public class Map {
         roomSouthWest.addItem(lasgun);
         roomCentral.addItem(crysknife);
         roomNorthWest.addItem(blade);
+        roomNorth.addItem(claws);
+
+        roomCentral.addEnemy(dragon);
+        roomNorthEast.addEnemy(racoon);
+        roomNorth.addEnemy(goblin);
+        roomSouthEast.addEnemy(demon);
+        roomSouth.addEnemy(devil);
+        roomSouthWest.addEnemy(zombie);
 
         return firstRoom;
     }
