@@ -18,13 +18,26 @@ public class Enemy {
     }
 
     public void hit(int damage) {
-        health -= damage;
-        IO.println(name + "takes damage" + damage + "has health" + health);
-        if (health >= 0) {
-            IO.println("dead Enemy");
-        }
+        this.health -= damage;
     }
-    public Enemy getName(){
-        return getName();
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public boolean isDead() {
+        return this.health <= 0;
+    }
+    @Override
+    public String toString() {
+        return name + " " + description + " holding " + weapon + " " + health + "HP";
     }
 }

@@ -70,6 +70,10 @@ public class Room {
         return inventory;
     }
 
+    public ArrayList<Enemy> getEnemies() {
+        return enemies;
+    }
+
     public void addItem(Item itemNew){
         inventory.add(itemNew);
     }
@@ -81,9 +85,18 @@ public class Room {
         enemies.remove(enemy);
     }
 
-    public Enemy getEnemy(String name){
-        for(Enemy enemy: enemies){
-            if (enemy.getName()){
+//    public Enemy getEnemy(String name){
+//        for(Enemy enemy : enemies){
+//            if (enemy.getName()){
+//                return enemy;
+//            }
+//        }
+//        return null;
+//    }
+    public Enemy searchEnemy(String name){
+        for (int i = 0; i < getEnemies().size(); i++) {
+            Enemy enemy = getEnemies().get(i);
+            if (enemy.toString().toLowerCase().contains(name.trim().toLowerCase())) {
                 return enemy;
             }
         }

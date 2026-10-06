@@ -172,20 +172,24 @@ public class Player {
 //        }
 //    }
 
-    public Attack attack(){
+    public Attack attack(Enemy targetEnemy){
         if (equippedWeapon == null){ //No weapon equipped
             return Attack.CANNOT_ATTACK;
         }
         if (!equippedWeapon.canUse()){
             return Attack.NO_AMMO;
         }
+        if (targetEnemy == null){
+            return Attack.CANNOT_ATTACK;
+        }
             int damage = equippedWeapon.getDamage();
-            enemy.hit(damage);
+            targetEnemy.hit(damage);
             equippedWeapon.use();
             return Attack.ATTACK;
     }
+
     public void hit(int damage){
-            this.health -= health;
+            this.health -= damage;
     }
     public boolean isDead(){
         return this.health <= 0;
