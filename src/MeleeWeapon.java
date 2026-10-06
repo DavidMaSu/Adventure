@@ -2,8 +2,12 @@ public class MeleeWeapon extends Weapon {
     int damage;
 
     public MeleeWeapon(String name, String description, int damage) {
-        super(name, description);
+        super(name, description, damage);
         this.damage = damage;
+    }
+
+    public int getDamage() {
+        return damage;
     }
 
     @Override

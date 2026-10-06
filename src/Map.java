@@ -37,7 +37,7 @@ public class Map {
         Food goldenCarrot = new Food("Golden Carrot", "Carrot covered in gold", 90);
         Food suspiciousStew = new Food("Suspicious stew", "A stew that smells amazing", -50);
 
-        RangedWeapon lasgun = new RangedWeapon("Lasgun", "A highly dangerous laser gun", 100, 50);
+        RangedWeapon lasgun = new RangedWeapon("Lasgun", "A highly dangerous laser gun", 100, 1);
         MeleeWeapon blade = new MeleeWeapon("Blade", "A typical sword", 20);
         MeleeWeapon crysknife = new MeleeWeapon("Crysknife", "A knife with a blade made from the tooth of a Shaihulud", 60);
         MeleeWeapon claws = new MeleeWeapon("Claws", "sharp claws from animals", 15);
