@@ -22,12 +22,6 @@ public class Enemy {
         health += incomingValue;
     }
 
-    public boolean isDead() {
-        return (health <= 0);
-    }
-
-    public void hit(Player player) {
-        player.modifyHealth(weapon.getDamage());
     public void hit(int damage) {
         this.health -= damage;
     }
