@@ -140,7 +140,7 @@ public class Player {
         }
         else {
             int damage = equippedWeapon.getDamage();
-            enemy.hit(damage);
+            enemy.takeDamage(damage);
             equippedWeapon.use();
             return Attack.ATTACK;
         }

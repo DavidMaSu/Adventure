@@ -18,7 +18,7 @@ public class Enemy {
         this.weapon = weapon;
     }
 
-    public void TakeDamage(int incomingValue) {
+    public void takeDamage(int incomingValue) {
         health += incomingValue;
     }
 
