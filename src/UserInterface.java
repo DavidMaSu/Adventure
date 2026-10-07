@@ -96,23 +96,24 @@ public class UserInterface {
                     if (targetEnemy == null){
                         IO.println("There is no enemy named: " + targetName);
                     } else {
-                        Attack result = adventure.playerAttack();
+                        Attack result = adventure.playerAttack(targetEnemy);
                         switch (result) {
                             case ATTACK -> {
                                 IO.println("you attack " + targetEnemy.getName() +
-                                        "with " + adventure.getWeapon());
+                                        " with " + adventure.getWeapon());
                                 if (targetEnemy.getHealth() <= 0){
                                     IO.println("You have slain the " + targetEnemy.getName() + "!");
                                 } else {
                                     IO.println("The " + targetEnemy.getName() +
                                             "survived and counter-attacks");
-                                    targetEnemy.hit(adventure.dovakin);
+                                    adventure.playerTakeDamage(targetEnemy.getAttackDamage());
+                                }
+                                if (adventure.dovakin.getHealth() > 0){
+                                    IO.println("You survived! Your health is now " + adventure.displayPlayerHealth());
                                 }
                                 if (adventure.isPlayerDead()) {
                                     IO.println("You have died....");
-                                } else {
-                                    IO.println("You survived the hit! You health is now " +
-                                            adventure.displayPlayerHealth());
+                                    running = false;
                                 }
                             }
                             case NO_AMMO -> IO.println("you need ammo ");
@@ -148,11 +149,17 @@ public class UserInterface {
                 case "help" -> displayHelpMenu();
                 case "exit" -> running = false;
                 case "look" -> {
-                    String description = ("You look and see that you are in " + adventure.currentPos());
-                    if (adventure.hasItems()) {
-                        IO.println(description + "\n" + "Here you see: " + adventure.displayItems());
+
+                    IO.println("You look and see that you are in " + adventure.currentPos());
+                    if (adventure.hasEnemies()){
+                        IO.println("Watch out! " + adventure.displayEnemies());
                     } else {
-                        IO.println(description + "\n" + "There is nothing here");
+                        IO.println("There are no enemies here");
+                    }
+                    if (adventure.hasItems()) {
+                        IO.println("Here you see: " + adventure.displayItems());
+                    } else {
+                        IO.println("There is no items here");
                     }
                 }
                 default -> IO.println("Invalid Command");

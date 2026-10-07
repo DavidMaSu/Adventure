@@ -28,6 +28,12 @@ public class Enemy {
 
     public void hit(Player player) {
         player.modifyHealth(weapon.getDamage());
+    public void hit(int damage) {
+        this.health -= damage;
+    }
+
+    public int getAttackDamage(){
+        return this.weapon.getDamage();
     }
 
     public String getName() {
@@ -36,5 +42,17 @@ public class Enemy {
 
     public int getHealth() {
         return health;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public boolean isDead() {
+        return this.health <= 0;
+    }
+    @Override
+    public String toString() {
+        return name + " " + description + " holding " + weapon + " " + health + "HP";
     }
 }
