@@ -8,6 +8,7 @@ public class Enemy {
     public Enemy(String name, int health, String description, Weapon weapon) {
         this(name, name, description, health, weapon);
     }
+
     //tosting for hvad name has a weapon
     public Enemy(String name, String longName, String description, int health, Weapon weapon) {
         this.name = name;
@@ -17,6 +18,16 @@ public class Enemy {
         this.weapon = weapon;
     }
 
+    public void takeDamage(int incomingValue) {
+        health += incomingValue;
+    }
+
+    public boolean isDead() {
+        return (health <= 0);
+    }
+
+    public void hit(Player player) {
+        player.modifyHealth(weapon.getDamage());
     public void hit(int damage) {
         this.health -= damage;
     }

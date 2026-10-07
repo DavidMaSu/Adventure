@@ -14,8 +14,8 @@ public class Player {
         this.health = 100;
     }
 
-    public void modifyHealth(int foodValue) {
-        health += foodValue;
+    public void modifyHealth(int incomingValue) {
+        health += incomingValue;
     }
 
     public int getHealth(){
@@ -58,47 +58,6 @@ public class Player {
         currentRoom = nextRoom;
         return true;
     }
-    /*public boolean move(String move) {
-
-        boolean running = true;
-
-        //Takes input from room and position to change location or quit
-        switch (move) {
-            case "n" -> {
-                if (currentRoom.getNorth() != null) {
-                    currentRoom = currentRoom.getNorth();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            case "e" -> {
-                if (currentRoom.getEast() != null) {
-                    currentRoom = currentRoom.getEast();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            case "s" -> {
-                if (currentRoom.getSouth() != null) {
-                    currentRoom = currentRoom.getSouth();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-            case "w" -> {
-                if (currentRoom.getWest() != null) {
-                    currentRoom = currentRoom.getWest();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-        return running;
-    } */
 
     public Room getCurrentRoom() {
         return currentRoom;
@@ -186,6 +145,7 @@ public class Player {
             targetEnemy.hit(damage);
             equippedWeapon.use();
             return Attack.ATTACK;
+        }
     }
 
     public void hit(int damage){
