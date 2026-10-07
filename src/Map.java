@@ -73,7 +73,7 @@ public class Map {
 
         roomCentral.addEnemy(dragon);
         roomNorthEast.addEnemy(racoon);
-        roomNorth.addEnemy(goblin);
+        roomNorthWest.addEnemy(goblin);
         roomSouthEast.addEnemy(demon);
         roomSouth.addEnemy(devil);
         roomSouthWest.addEnemy(zombie);
