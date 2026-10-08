@@ -2,8 +2,8 @@ public class RangedWeapon extends Weapon {
     private int remainingAmmo;
 
 
-    public RangedWeapon (String name, String description, int damage, int ammo){
-        super(name, description, damage);
+    public RangedWeapon (String name, String description, int damage, int ammo, boolean droppable){
+        super(name, description, damage, droppable);
         this.remainingAmmo = ammo;
 
 
