@@ -123,7 +123,7 @@ public class Room {
 
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
-            if (item.getName().toLowerCase().startsWith(name)) {
+            if (item.getType().toLowerCase().startsWith(name)) {
                 return item;
             }
         }

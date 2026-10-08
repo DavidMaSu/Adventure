@@ -13,10 +13,6 @@ public class Adventure {
         return dovakin.equip(name);
     }
 
-    public Attack playerAttack(Enemy targetEnemy) {
-        return dovakin.attack(targetEnemy);
-    }
-
     public Weapon getWeapon() {
         return dovakin.getEquippedWeapon();
     }

@@ -19,7 +19,7 @@ public class Enemy {
     }
 
     public void takeDamage(int damage) {
-        health -= damage;
+        health += damage;
     }
 
     public int enemyAttack(){
