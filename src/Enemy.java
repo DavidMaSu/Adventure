@@ -46,8 +46,14 @@ public class Enemy {
     }
 
     public boolean isDead() {
+        if(health <= 0){
+            dropWeapon();
+
+        }
         return this.health <= 0;
     }
+
+
     @Override
     public String toString() {
         return name + " " + description + " holding " + weapon + " " + health + "HP";
