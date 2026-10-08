@@ -1,6 +1,5 @@
 public class UserInterface {
     Adventure adventure;
-    Item sword = new Item("sword", "cool");
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
@@ -81,7 +80,7 @@ public class UserInterface {
 
                 }
                 case "equip" -> {
-                    String itemName = IO.readln("What weapon do you want to equip?").trim().toLowerCase();
+                    String itemName = IO.readln("What weapon do you want to equip? ").trim().toLowerCase();
                     Equip result = adventure.playerEquip(itemName);
                     switch (result) {
                         case EQUIP -> IO.println("you have equipped " + adventure.getWeapon());
@@ -91,22 +90,20 @@ public class UserInterface {
                     }
                      }
                 case "attack" -> {
-                    String targetName = IO.readln("Who do you want to attack?").trim().toLowerCase();
-                    Enemy targetEnemy = adventure.findEnemyInRoom(targetName);
-                    if (targetEnemy == null){
-                        IO.println("There is no enemy named: " + targetName);
+                    String targetEnemyName = IO.readln("Who do you want to attack?").trim().toLowerCase();
+                    if (targetEnemyName == null){
+                        IO.println("There is no enemy named: " + targetEnemyName);
                     } else {
-                        Attack result = adventure.playerAttack(targetEnemy);
+                        Attack result = adventure.attack(targetEnemyName);
                         switch (result) {
                             case ATTACK -> {
-                                IO.println("you attack " + targetEnemy.getName() +
+                                IO.println("you attack " + targetEnemyName +
                                         " with " + adventure.getWeapon());
-                                if (targetEnemy.getHealth() <= 0){
-                                    IO.println("You have slain the " + targetEnemy.getName() + "!");
+                                if (adventure.findEnemyInRoom(targetEnemyName) == null){
+                                    IO.println("You have slain the enemy");
                                 } else {
-                                    IO.println("The " + targetEnemy.getName() +
+                                    IO.println("The " + targetEnemyName +
                                             "survived and counter-attacks");
-                                    adventure.playerTakeDamage(targetEnemy.getAttackDamage());
                                 }
                                 if (adventure.dovakin.getHealth() > 0){
                                     IO.println("You survived! Your health is now " + adventure.displayPlayerHealth());
@@ -117,8 +114,8 @@ public class UserInterface {
                                 }
                             }
                             case NO_AMMO -> IO.println("you need ammo ");
-                            case CANNOT_ATTACK -> IO.println("you cant attack ");
-                            case NO_ENEMY -> IO.println("You missed and hit the air ");
+                            case CANNOT_ATTACK -> IO.println("you have no weapon equipped ");
+                            case NO_ENEMY -> IO.println("You hit the air ");
                             default -> IO.println("Error in handling, attackResult did not return enum value ");
                         }
                     }
@@ -180,8 +177,10 @@ public class UserInterface {
         IO.println("Type health to check your status");
         IO.println("Type eat to eat something in your inventory or room");
         IO.println("Type take to take item");
+        IO.println("Type equip to equip an item you have picked up");
         IO.println("Type drop to drop item");
         IO.println("Type look to see room");
+        IO.println("Type attack to attack");
         IO.println("Type Exit to quit");
     }
 
