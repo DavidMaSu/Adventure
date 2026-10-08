@@ -118,6 +118,7 @@ public class UserInterface {
                             }
                             case NO_AMMO -> IO.println("you need ammo ");
                             case CANNOT_ATTACK -> IO.println("you cant attack ");
+                            case NO_ENEMY -> IO.println("You missed and hit the air ");
                             default -> IO.println("Error in handling, attackResult did not return enum value ");
                         }
                     }

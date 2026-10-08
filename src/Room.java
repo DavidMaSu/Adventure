@@ -116,9 +116,14 @@ public class Room {
     }
 
     public Item searchItem(String name) {
+        name = name.trim().toLowerCase();
+        if (name.isEmpty()){
+            return null;
+        }
+
         for (int i = 0; i < getInventory().size(); i++) {
             Item item = getInventory().get(i);
-            if (item.toString().toLowerCase().contains(name.trim().toLowerCase())) {
+            if (item.getName().toLowerCase().startsWith(name)) {
                 return item;
             }
         }
