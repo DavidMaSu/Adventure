@@ -115,9 +115,10 @@ public class Adventure {
             return Attack.NO_ENEMY;
         } else {
             targetEnemy.takeDamage(dovakin.playerDamage()); //this uses the weapon expending ammo if its ranged
-            if (targetEnemy.getHealth() <= 0) { // If Enemy is dead
+            if (isEnemyDead()) { // If Enemy is dead
                 currentPos().addItem((targetEnemy.dropWeapon())); // and they will drop weapon if they can in current room
                 currentPos().removeEnmemy(targetEnemy); // then remove themselves from the room
+
             } else {
                 dovakin.modifyHealth(targetEnemy.enemyAttack()); // otherwise if alive they will counter attackplayer
             }
