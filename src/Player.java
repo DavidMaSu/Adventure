@@ -146,7 +146,6 @@ public class Player {
             equippedWeapon.use();
             return Attack.ATTACK;
         }
-    }
 
     public void hit(int damage){
             this.health -= damage;
@@ -172,5 +171,6 @@ public class Player {
 //    }
     }
 }
+
 
   
