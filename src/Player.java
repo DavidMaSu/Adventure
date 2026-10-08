@@ -116,20 +116,6 @@ public class Player {
             return Equip.CANNOT_EQUIP;
         }
     }
-//    public Attack attack(){
-//        int usesLeft = equippedWeapon.use();
-//        if (equippedWeapon == null){
-//            return Attack.CANNOT_ATTACK;
-//        }
-//        if (!equippedWeapon.canUse()){
-//            return Attack.NO_AMMO;
-//        }
-//        if (equippedWeapon.canUse()){
-//            return Attack.ATTACK;
-//        } else {
-//            return Attack.ATTACK;
-//        }
-//    }
 
     public Attack attack(Enemy targetEnemy){
         if (equippedWeapon == null){ //No weapon equipped
@@ -154,21 +140,12 @@ public class Player {
         return this.health <= 0;
     }
 
-    // This version of instance of is the short hand version, ian never explained this, but it is identical to the version below.
-
-        public boolean isFood(Item item){
-        if (item instanceof Food food) {
-            modifyHealth(food.getHealthPoints());
-            return true;
-        } else { return false;
+    public boolean canUseWeapon(){
+        return equippedWeapon.canUse();
     }
 
-//    public void isFood(Item item){
-//        if (item instanceof Food) {
-//            Food food = (Food) item;
-//            modifyHealth(food.getHealthPoints());
-//        }
-//    }
+    public int playerDamage(){
+        return equippedWeapon.use();
     }
 }
 

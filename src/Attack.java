@@ -1,2 +1,2 @@
-public enum Attack {NO_AMMO, CANNOT_ATTACK, ATTACK
+public enum Attack {NO_AMMO, CANNOT_ATTACK, ATTACK, NO_ENEMY
 }
