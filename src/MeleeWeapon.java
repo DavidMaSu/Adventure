@@ -1,13 +1,9 @@
 public class MeleeWeapon extends Weapon {
-    int damage;
+    private int damage;
 
     public MeleeWeapon(String name, String description, int damage,boolean droppable) {
         super(name, description, damage, droppable);
         this.damage = damage;
-    }
-
-    public int getDamage() {
-        return damage;
     }
 
     @Override

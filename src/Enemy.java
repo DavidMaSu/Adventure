@@ -18,16 +18,12 @@ public class Enemy {
         this.weapon = weapon;
     }
 
-    public void takeDamage(int incomingValue) {
-        health += incomingValue;
+    public void takeDamage(int damage) {
+        health -= damage;
     }
 
-    public void hit(int damage) {
-        this.health -= damage;
-    }
-
-    public int getAttackDamage(){
-        return this.weapon.getDamage();
+    public int enemyAttack(){
+        return weapon.use();
     }
 
     public String getName() {
@@ -40,6 +36,13 @@ public class Enemy {
 
     public Weapon getWeapon() {
         return weapon;
+    }
+
+    public Weapon dropWeapon() {
+        if (weapon.canDrop()){
+            return weapon;
+        }
+        return null;
     }
 
     public boolean isDead() {

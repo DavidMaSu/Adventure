@@ -103,8 +103,33 @@ public class Adventure {
         return !currentPos().getEnemies().isEmpty();
     }
 
-    public void playerTakeDamage(int damage){
+    public void playerTakeDamage(int damage) {
         this.dovakin.hit(damage);
     }
+
+    public Attack attack(String enemyName) {
+        Enemy targetEnemy = findEnemyInRoom(enemyName);
+        if (dovakin.getEquippedWeapon() == null) { //No weapon equipped
+            return Attack.CANNOT_ATTACK;
+        }
+        if (!dovakin.canUseWeapon()) { //No Ammo in Player weapon
+            return Attack.NO_AMMO;
+        }
+        if (targetEnemy == null) { //No Enemy in Room
+            return Attack.NO_ENEMY;
+        } else {
+            targetEnemy.takeDamage(dovakin.playerDamage()); //this uses the weapon expending ammo if its ranged
+            if (targetEnemy.getHealth() <= 0) { // If Enemy is dead
+                currentPos().addItem((targetEnemy.dropWeapon())); // and they will drop weapon if they can in current room
+                currentPos().removeEnmemy(targetEnemy); // then remove themselves from the room
+            } else {
+                dovakin.modifyHealth(targetEnemy.enemyAttack()); // otherwise if alive they will counter attackplayer
+            }
+
+            return Attack.ATTACK;
+        }
+
+    }
+
 
 }
