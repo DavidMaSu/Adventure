@@ -1,9 +1,9 @@
 public class Enemy {
-    String name;
-    String longName;
-    String description;
-    int health;
-    Weapon weapon;
+    private String name;
+    private String longName;
+    private String description;
+    private int health;
+    private Weapon weapon;
 
     public Enemy(String name, int health, String description, Weapon weapon) {
         this(name, name, description, health, weapon);
@@ -48,9 +48,9 @@ public class Enemy {
     public boolean isDead() {
         if(health <= 0){
             dropWeapon();
-
+            return true;
         }
-        return this.health <= 0;
+        return false;
     }
 
 
