@@ -83,7 +83,7 @@ public class Adventure {
         return dovakin.isDead();
     }
 
-    public boolean isEnemyDead() {
+    public boolean isEnemyDead(Enemy enemy) {
         return enemy.isDead();
     }
 
@@ -115,7 +115,7 @@ public class Adventure {
             return Attack.NO_ENEMY;
         } else {
             targetEnemy.takeDamage(dovakin.playerDamage()); //this uses the weapon expending ammo if its ranged
-            if (isEnemyDead()) { // If Enemy is dead
+            if (isEnemyDead(targetEnemy)) { // If Enemy is dead
                 currentPos().addItem((targetEnemy.dropWeapon())); // and they will drop weapon if they can in current room
                 currentPos().removeEnmemy(targetEnemy); // then remove themselves from the room
 
